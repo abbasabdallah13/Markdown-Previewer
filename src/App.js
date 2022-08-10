@@ -1,23 +1,79 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import background from "./assets/background.png";
+import $ from "jquery";
+import { marked } from "marked";
+import { useState } from "react";
+marked.setOptions({
+  breaks: true,
+});
+
+const placeholder = ` 
+  # Welcome to my Markdown Previewer
+  ## // h2 header 
+  \` <h3>This is an h3 header </h3> \`
+  >Abbas
+  _____________________________________________________________________________
+  <pre><code>Replace this text with anything you would like</code></pre>
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  <p>
+    This **application** uses <strong>Marked</strong>. To know more about it visit their link
+    [here](https://marked.js.org/using_advanced)
+  </p>
+  
+  <img src="https://marked.js.org/img/logo-black.svg" alt="marked logo" />
+  
+  <blockquote>
+    Marked lets you convert Markdown into HTML. Markdown is a simple text
+    format whose goal is to be very easy to read and write, even when not
+    converted to HTML. This demo page will let you type anything you like
+    and see how it gets converted.
+  </blockquote>
+  <code>
+  <h1>Test</h1>
+  </code>
+  ## Random Stuff
+  @!#$@$#@$!@$!@
+  <h3>Things on mind right now:</h3>
+    <ul>
+    <li>Showering</li>
+    </ul>
+    
+  - Cooking
+    - Eating
+  
+
+
+  \`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+![code Logo](https://cdn.iconscout.com/icon/premium/png-256-thumb/code-283-468507.png)
+
+  `;
 
 function App() {
+  $(document).ready(() => {
+    $("#preview").html(marked.parse($("#editor").val()));
+
+    $(".terminal").keyup(() => {
+      $("#preview").html(marked.parse($("#editor").val()));
+    });
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img className="background" src={background} alt="background" />
+      <textarea
+        className="terminal"
+        id="editor"
+        defaultValue={placeholder}
+      ></textarea>
+      <div className="monitor" id="preview"></div>
     </div>
   );
 }
