@@ -1,0 +1,38 @@
+.App{
+  display:flex;
+  justify-content: space-around;
+  align-items:center;
+  padding: 1rem;
+  @media screen and (max-width:640px){
+    .images-containers{
+      img{
+        max-width: 100%;
+      }
+    }
+  }
+  @media screen and (max-width:1200px){
+    flex-direction: column;
+  }
+}
+.terminal {
+  width: 92%;
+  height: 77%;
+  position: absolute;
+  top:4rem;
+  left: 1.3rem;
+  overflow-y: scroll;
+  @media screen and (max-width: 640px){
+    top: 13vw;
+    left: 3vw;
+  }
+}
+
+.monitor {
+  width: 90%;
+  height: 61.7%;
+  position: absolute;
+  top: 1rem;
+  left:2rem;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+}

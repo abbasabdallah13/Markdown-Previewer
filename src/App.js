@@ -1,8 +1,9 @@
-import "./App.css";
-import background from "./assets/background.png";
+import "./App.scss";
+import terminal from './assets/terminal.png'
+import monitorPic from './assets/monitor.png'
 import $ from "jquery";
 import { marked } from "marked";
-import { useState } from "react";
+
 marked.setOptions({
   breaks: true,
 });
@@ -67,13 +68,19 @@ function App() {
 
   return (
     <div className="App">
-      <img className="background" src={background} alt="background" />
-      <textarea
-        className="terminal"
-        id="editor"
-        defaultValue={placeholder}
-      ></textarea>
-      <div className="monitor" id="preview"></div>
+        <div className="images-containers"  style={{position:'relative'}}>
+          <img src={terminal} alt='terminal'   />
+        <textarea
+          className="terminal"
+          id="editor"
+          defaultValue={placeholder}
+          style={{position:'absolute'}}
+        ></textarea>
+        </div>
+        <div className="images-containers"  style={{position:'relative', marginTop:'3rem'}}>
+          <img src={monitorPic} alt='monitor' />
+          <div className="monitor" id="preview"></div>
+        </div>
     </div>
   );
 }
